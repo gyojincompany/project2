@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import './TodoItem.css';
+import { TodoContext } from '../App';
 
-function TodoItem({id, content, isDone, createDate, onUpdate, onDelete}) {
+function TodoItem({id, content, isDone, createDate}) {
+    
+    //context에 전달된 데이터 중 필요한 데이터 가져오기
+    const {onUpdate, onDelete } = useContext(TodoContext);
 
     function onChangeCheckBox() {
         onUpdate(id);

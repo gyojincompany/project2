@@ -1,5 +1,6 @@
-import { useReducer, useRef } from 'react';
+import { useContext, useReducer, useRef } from 'react';
 import './TodoEditor.css';
+import { TodoContext } from '../App';
 
 function reducer(state, action) {
     switch(action.type)  {
@@ -13,7 +14,10 @@ function reducer(state, action) {
 }
 
 
-function TodoEditor({onCreate}) {
+function TodoEditor() {
+
+    //context에 전달된 데이터 중 필요한 데이터 가져오기
+    const { onCreate } = useContext(TodoContext);
 
     const [content, dispatch] = useReducer(reducer, "");
 
