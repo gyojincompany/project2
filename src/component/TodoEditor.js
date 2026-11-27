@@ -1,14 +1,32 @@
-import { useRef, useState } from 'react';
+import { useReducer, useRef } from 'react';
 import './TodoEditor.css';
+
+function reducer(state, action) {
+    switch(action.type)  {
+        case "SETCONTENT":
+            return action.value;
+        case "RESET":
+            return "";
+        default:
+            return state;    
+    }
+}
+
 
 function TodoEditor({onCreate}) {
 
-    const [content, setContent] = useState("");
+    const [content, dispatch] = useReducer(reducer, "");
+
     const inputRef = useRef();
 
     //input에 텍스트가 입력되거나 수정되었을 때 호출되는 이벤트 핸들러 -> input 에 입력된 텍스트를 가져오기
     function onChangeContent(e) {
-        setContent(e.target.value);
+        dispatch(
+            {
+                type:"SETCONTENT",
+                value:e.target.value
+            }
+        );
     };
 
     function onKeyDown(e) { //엔터키 입력 이벤트 핸들러
@@ -25,7 +43,12 @@ function TodoEditor({onCreate}) {
             return;
         }
         onCreate(content);
-        setContent(""); //입력폼 초기화
+        // setContent(""); //입력폼 초기화
+        dispatch(
+            {
+                type:"RESET"
+            }
+        );
         inputRef.current.focus();
     }
 
