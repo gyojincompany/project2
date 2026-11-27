@@ -19,7 +19,7 @@ function TodoList({todoList}) {
             return todoList;
         } else {
             //검색어로 필터링된 todoList를 반환
-            return todoList.filter((item) => item.content.includes(search));
+            return todoList.filter((item) => item.content.toLowerCase().includes(search.toLowerCase()));
         }
     }
 
