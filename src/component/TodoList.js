@@ -24,9 +24,9 @@ function TodoList({todoList, onUpdate, onDelete}) {
     }
 
     function onKeyDown(e) { //엔터키 입력 이벤트 핸들러
-        //엔터키의 코드번호 13
+        //ESC키의 코드번호 27
         if(e.keyCode === 27) {
-            setSearch("");
+            setSearch(""); //search값 초기화->검색란이 빈칸으로 초기화
         }    
     };
 
