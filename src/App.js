@@ -43,13 +43,29 @@ function App() {
     idRef.current = idRef.current + 1; //할일 리스트에 넣은 후 id값 1증가 시킴->다음 할일 객체의 id값
   }
 
-  
+  //체크박스 수정 기능을 추가해주는 함수
+  //isDone 의 값을 false->true->false
+  function onUpdate(targetId) { //매개변수로 이벤트 핸들러를 호출한 할일객체(item)의 id값 선언
+    //1) 이벤트가 발생한 할일 객체 찾기(targetId)
+    //2) 이벤트가 발생한 할일 객체의 isDone 값 가져오기
+    //3) isDone 값 반대로 바꾸기(!isDone)
+    setTodoList(
+      todoList.map((item)=>{
+        if(item.id === targetId) { //참->이벤트가 발생한 할일 객체 찾기 성공
+          //...item => id, content, isDone, createDate , isDone : !isDone
+          return {...item, isDone : !item.isDone};
+        } else {
+          return item;
+        }
+      })
+    );
+  };
 
   return (
     <div className="App">
       <Header />
       <TodoEditor onCreate={onCreate}/>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onUpdate={onUpdate} />
     </div>
   );
 }
