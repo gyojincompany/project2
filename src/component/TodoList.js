@@ -19,7 +19,7 @@ function TodoList({todoList}) {
             <div className='list_wrapper'>
                 {
                     todoList.map((item) => (                        
-                        <TodoItem {...item} />
+                        <TodoItem key={item.id} {...item} />
                     ))
                 }
             </div>
