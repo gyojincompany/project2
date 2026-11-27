@@ -11,6 +11,13 @@ function TodoEditor({onCreate}) {
         setContent(e.target.value);
     };
 
+    function onKeyDown(e) { //엔터키 입력 이벤트 핸들러
+        //엔터키의 코드번호 13
+        if(e.keyCode === 13) {
+            onSubmit();
+        }    
+    };
+
     //추가버튼->이벤트 핸들러
     function onSubmit() {
         if(!content) { //참->공백으로 입력됨
@@ -26,7 +33,13 @@ function TodoEditor({onCreate}) {
         <div className="TodoEditor">
             <h4>새로운 Todo 작성하기 ✏️</h4>
             <div className="editor_wrapper">
-                <input ref={inputRef} value={content} placeholder="새로운 Todo..." onChange={onChangeContent} />
+                <input 
+                    ref={inputRef} 
+                    value={content} 
+                    placeholder="새로운 Todo..." 
+                    onChange={onChangeContent} 
+                    onKeyDown={onKeyDown}
+                />
                 <button onClick={()=>onSubmit()}>추가</button>
             </div>
         </div>
