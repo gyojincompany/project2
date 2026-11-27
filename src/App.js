@@ -6,23 +6,23 @@ import TodoList from './component/TodoList';
 
 function reducer(state, action) { //상태 변화 함수
   switch(action.type) {
-    case "CREATE":{
+    case "CREATE":
       return [action.newItem, ...state]; //기존 할일 리스트에 새로운 할일 객체 추가
-    };
-    case "UPDATE":{
+
+    case "UPDATE":
       return state.map((item)=> {
         if(item.id === action.targetId) {
           return {...item, isDone : !item.isDone};
         } else {
           return item;
         }
-      })      
-    };
-    case "DELETE": {
+      });
+    
+    case "DELETE":
       return state.filter((item) =>
         item.id !== action.targetId 
-      )
-    };  
+      );  
+      
     default:
       return state;
   }
