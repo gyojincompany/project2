@@ -4,7 +4,7 @@ import './TodoList.css';
 
 /* <TodoItem id={item.id} isDone={item.isDone} content={item.content} createDate={item.createDate} /> */
 
-function TodoList({todoList, onUpdate}) {
+function TodoList({todoList, onUpdate, onDelete}) {
 
     const [search, setSearch] = useState("");
 
@@ -31,7 +31,7 @@ function TodoList({todoList, onUpdate}) {
             <div className='list_wrapper'>
                 {
                     getSearchResult().map((item) => (                        
-                        <TodoItem key={item.id} {...item} onUpdate={onUpdate} />
+                        <TodoItem key={item.id} {...item} onUpdate={onUpdate} onDelete={onDelete} />
                     ))
                 }
             </div>

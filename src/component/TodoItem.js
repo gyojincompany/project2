@@ -1,6 +1,6 @@
 import './TodoItem.css';
 
-function TodoItem({id, content, isDone, createDate, onUpdate}) {
+function TodoItem({id, content, isDone, createDate, onUpdate, onDelete}) {
 
     function onChangeCheckBox() {
         onUpdate(id);
@@ -14,7 +14,7 @@ function TodoItem({id, content, isDone, createDate, onUpdate}) {
             <div className='title_col'>{content}</div>
             <div className='date_col'>{new Date(createDate).toLocaleDateString()}</div>
             <div className='btn_col'>
-                <button>삭제</button>
+                <button onClick={()=>onDelete(id)}>삭제</button>
             </div>
         </div>
     );

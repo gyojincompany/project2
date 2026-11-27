@@ -54,18 +54,29 @@ function App() {
         if(item.id === targetId) { //참->이벤트가 발생한 할일 객체 찾기 성공
           //...item => id, content, isDone, createDate , isDone : !isDone
           return {...item, isDone : !item.isDone};
+          //체크 이벤트가 발생한 할일 객체의 isDone값을 반대로 수정한 후에 새배열로 넣어주기 위한 반환
         } else {
-          return item;
+          return item; //체크 이벤트가 발생하지 않은 할일 객체들은 그대로 새배열로 넣어주기 위한 반환
         }
       })
     );
   };
 
+  //할일 객체 삭제 함수->삭제해야할 할일 객체를 제외하는 필터링 함수
+  function onDelete(targetId) {
+    setTodoList(
+      todoList.filter((item) =>
+      item.id !== targetId //삭제해야할 아이디 할일 객체를 제외한 나머지 할일 객체만 배열로 생성
+      )
+    );
+  };
+
+
   return (
     <div className="App">
       <Header />
       <TodoEditor onCreate={onCreate}/>
-      <TodoList todoList={todoList} onUpdate={onUpdate} />
+      <TodoList todoList={todoList} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
