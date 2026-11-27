@@ -23,11 +23,18 @@ function TodoList({todoList, onUpdate, onDelete}) {
         }
     }
 
+    function onKeyDown(e) { //엔터키 입력 이벤트 핸들러
+        //엔터키의 코드번호 13
+        if(e.keyCode === 27) {
+            setSearch("");
+        }    
+    };
+
 
     return (
         <div className="TodoList">
             <h4>Todo List 🌱</h4>            
-            <input value={search} onChange={onChangeSearch} className='searchbar' placeholder="검색어를 입력하세요" />
+            <input value={search} onKeyDown={onKeyDown} onChange={onChangeSearch} className='searchbar' placeholder="검색어를 입력하세요" />
             <div className='list_wrapper'>
                 {
                     getSearchResult().map((item) => (                        
